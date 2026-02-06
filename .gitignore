@@ -1,0 +1,15 @@
+# Claude Code specific
+.claude/projects/
+.claude/tmp/
+.claude/.claude-id
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+*.swp
+*.swo
+*~
+.idea/
+.vscode/
