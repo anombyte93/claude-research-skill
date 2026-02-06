@@ -4,7 +4,7 @@ This is a standalone Claude Code skill repository.
 
 ## Purpose
 
-Enforces mandatory research with Perplexity API and context7 before ANY implementation code.
+Enforces mandatory research with WebSearch and optional context7 before ANY implementation code.
 
 ## Quick Start
 
@@ -23,8 +23,8 @@ Use the research-before-coding skill and show me exactly what research you perfo
 
 **Expected behavior:**
 1. Claude loads the skill
-2. Runs 3 Perplexity searches in parallel
-3. Runs 1 context7 lookup for the library
+2. Runs 3 WebSearch queries in parallel
+3. Optionally runs 1 context7 lookup for the library (if available)
 4. Synthesizes findings before suggesting any code
 
 ## Structure

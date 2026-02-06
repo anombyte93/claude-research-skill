@@ -2,7 +2,7 @@
 
 Quick reference for formulating effective research queries.
 
-## Perplexity Query Templates
+## WebSearch Query Templates
 
 ### For New Features
 ```
@@ -44,19 +44,16 @@ Examples:
 - `"python http client library comparison 2025"`
 - `"javascript testing framework comparison 2025"`
 
-## context7 Query Templates
+## context7 Query Templates (Optional)
+
+**Note:** context7 is optional. If not available, replace with WebSearch queries.
 
 ### Step 1: Resolve Library
-```bash
-mcp-cli call context7/resolve-library-id '{"library": "<library-name>"}'
-```
+Use the context7 skill or WebSearch:
+- `"context7: <library-name>"` (if skill available)
+- `"<library-name> official documentation"` (fallback)
 
 ### Step 2: Query Docs
-```bash
-mcp-cli call context7/query-docs '{"id": "<resolved-id>", "query": "<your question>"}'
-```
-
-### Common context7 Queries
 - `"how to <use feature>"`
 - `"authentication example"`
 - `"error handling"`
@@ -66,31 +63,31 @@ mcp-cli call context7/query-docs '{"id": "<resolved-id>", "query": "<your questi
 ## Combined Workflow Examples
 
 ### Example 1: Adding Authentication to React App
-```bash
-# Parallel calls
-mcp-cli call perplexity-api-free/search '{"query": "best practices react authentication next-auth 2025"}'
-mcp-cli call perplexity-api-free/search '{"query": "nextjs authentication architecture patterns"}'
-mcp-cli call perplexity-api-free/search '{"query": "github next-auth oauth examples"}'
-mcp-cli call context7/resolve-library-id '{"library": "next-auth"}'
-```
+**Run all 3 WebSearch queries in parallel:**
+1. `"best practices react authentication next-auth 2025"`
+2. `"nextjs authentication architecture patterns"`
+3. `"github next-auth oauth examples"`
+
+**Optional context7:**
+- `"next-auth"` library documentation
 
 ### Example 2: Fixing Database Lock Error
-```bash
-# Parallel calls
-mcp-cli call perplexity-api-free/search '{"query": "sqlite database is locked python fix 2025"}'
-mcp-cli call perplexity-api-free/search '{"query": "python sqlite connection management best practices"}'
-mcp-cli call perplexity-api-free/search '{"query": "github sqlite concurrent access python"}'
-mcp-cli call context7/resolve-library-id '{"library": "sqlite3"}'
-```
+**Run all 3 WebSearch queries in parallel:**
+1. `"sqlite database is locked python fix 2025"`
+2. `"python sqlite connection management best practices"`
+3. `"github sqlite concurrent access python"`
+
+**Optional context7:**
+- `"sqlite3"` library documentation
 
 ### Example 3: Building API Client
-```bash
-# Parallel calls
-mcp-cli call perplexity-api-free/search '{"query": "best practices python http client api 2025"}'
-mcp-cli call perplexity-api-free/search '{"query": "python async http client architecture"}'
-mcp-cli call perplexity-api-free/search '{"query": "github httpx aiohttp comparison examples"}'
-mcp-cli call context7/resolve-library-id '{"library": "httpx"}'
-```
+**Run all 3 WebSearch queries in parallel:**
+1. `"best practices python http client api 2025"`
+2. `"python async http client architecture"`
+3. `"github httpx aiohttp comparison examples"`
+
+**Optional context7:**
+- `"httpx"` library documentation
 
 ## Query Optimization Tips
 

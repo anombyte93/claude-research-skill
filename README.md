@@ -1,10 +1,10 @@
 # Research Before Coding
 
-A Claude Code skill that enforces mandatory research using Perplexity API and context7 before writing any implementation code.
+A Claude Code skill that enforces mandatory research using WebSearch and optional context7 before writing any implementation code.
 
 ## The Core Principle
 
-> **"You don't know anything until Perplexity confirms it"**
+> **"You don't know anything until research confirms it"**
 
 This skill treats research as a mandatory first step, not an optional one. No exceptions for "obvious" patterns, "simple" fixes, or things you "know."
 
@@ -12,7 +12,7 @@ This skill treats research as a mandatory first step, not an optional one. No ex
 
 | Approach | Time Cost |
 |----------|-----------|
-| **Research first**: 4 parallel calls × 3 seconds = 12 seconds → Correct code |
+| **Research first**: 3 parallel calls × 3 seconds = 9 seconds → Correct code |
 | **Guess and fix**: Type code → Wrong → Debug → Wrong → Revert → Lost context = 15+ minutes |
 
 ## Installation
@@ -38,14 +38,12 @@ Invoke the skill before writing any implementation code:
 
 ## The Research Workflow
 
-**Step 1: Run 4 Research Queries (ALL in parallel)**
+**Step 1: Run 3-4 Research Queries (ALL in parallel)**
 
-```bash
-mcp-cli call perplexity-api-free/search '{"query": "best practices <technology> <task> 2025"}'
-mcp-cli call perplexity-api-free/search '{"query": "<technology> architecture patterns <domain>"}'
-mcp-cli call perplexity-api-free/search '{"query": "github <technology> <use case> examples"}'
-mcp-cli call context7/resolve-library-id '{"library": "<library-name>"}'
-```
+1. `WebSearch("best practices <technology> <task> 2025")`
+2. `WebSearch("<technology> architecture patterns <domain>")`
+3. `WebSearch("github <technology> <use case> examples")`
+4. Optional: `Skill("context7/resolve-library-id", args="<library-name>")`
 
 **Step 2: Synthesize findings**
 - Extract key patterns from each source
@@ -58,10 +56,8 @@ Write to `CLAUDE-research.md` in your project.
 
 ## Requirements
 
-- Claude Code CLI
-- `perplexity-api-free` MCP server configured
-- `context7` MCP server configured
-- `mcp-cli` installed
+- Claude Code CLI (with web search enabled)
+- Optional: context7 MCP server for library docs
 
 ## License
 
