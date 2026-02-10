@@ -1,16 +1,18 @@
 # Query Patterns for Research
 
-Quick reference for formulating effective research queries.
+Quick reference for formulating effective research queries within the **research agent**.
 
 ## WebSearch Query Templates
 
+These are used INSIDE the Task agent prompt. The agent runs them via the WebSearch tool and distills the output.
+
 ### For New Features
 ```
-"best practices <language/framework> <feature type> 2025"
+"best practices <language/framework> <feature type> 2026"
 ```
 Examples:
-- `"best practices react authentication flow 2025"`
-- `"best practices python async api design 2025"`
+- `"best practices react authentication flow 2026"`
+- `"best practices python async api design 2026"`
 
 ### For Architecture Decisions
 ```
@@ -30,68 +32,60 @@ Examples:
 
 ### For Bug Fixes
 ```
-"<error message or symptom> <technology> fix 2025"
+"<error message or symptom> <technology> fix 2026"
 ```
 Examples:
-- `"sqlite database is locked python fix 2025"`
-- `"react useEffect infinite loop causes 2025"`
+- `"sqlite database is locked python fix 2026"`
+- `"react useEffect infinite loop causes 2026"`
 
 ### For Library Selection
 ```
-"<task> <language> library comparison 2025"
+"<task> <language> library comparison 2026"
 ```
 Examples:
-- `"python http client library comparison 2025"`
-- `"javascript testing framework comparison 2025"`
+- `"python http client library comparison 2026"`
+- `"javascript testing framework comparison 2026"`
 
-## context7 Query Templates (Optional)
+## context7 Query Templates (Main Session Only)
 
-**Note:** context7 is optional. If not available, replace with WebSearch queries.
+**IMPORTANT:** context7 is used in the **main session** after the research agent returns, for lightweight API doc lookups. Do NOT put context7 calls inside the research agent.
 
 ### Step 1: Resolve Library
-Use the context7 skill or WebSearch:
-- `"context7: <library-name>"` (if skill available)
-- `"<library-name> official documentation"` (fallback)
+Use Claude Code's `resolve-library-id` tool:
+```json
+{"libraryName": "<library-name>", "query": "<what you need help with>"}
+```
 
 ### Step 2: Query Docs
+Use Claude Code's `query-docs` tool:
+```json
+{"libraryId": "<id-from-step-1>", "query": "<your question>"}
+```
+
+### Common context7 Queries
 - `"how to <use feature>"`
 - `"authentication example"`
 - `"error handling"`
 - `"configuration options"`
 - `"API reference <method name>"`
 
-## Combined Workflow Examples
+## CALLER NEEDS TO KNOW Examples
 
-### Example 1: Adding Authentication to React App
-**Run all 3 WebSearch queries in parallel:**
-1. `"best practices react authentication next-auth 2025"`
-2. `"nextjs authentication architecture patterns"`
-3. `"github next-auth oauth examples"`
+The most important part of the research agent prompt is the `CALLER NEEDS TO KNOW` field. Good examples:
 
-**Optional context7:**
-- `"next-auth"` library documentation
+| Scenario | CALLER NEEDS TO KNOW |
+|----------|---------------------|
+| Adding auth | "How to implement OAuth in Next.js 14 with NextAuth v5, including session management" |
+| Fixing a bug | "Why SQLite throws 'database is locked' during concurrent writes and how to fix it" |
+| Choosing a library | "Which Python HTTP client to use for async API calls with retry logic" |
+| Performance issue | "How to optimize React re-renders in a large data table with 10k+ rows" |
+| New feature | "How to implement WebSocket real-time updates in a FastAPI backend" |
 
-### Example 2: Fixing Database Lock Error
-**Run all 3 WebSearch queries in parallel:**
-1. `"sqlite database is locked python fix 2025"`
-2. `"python sqlite connection management best practices"`
-3. `"github sqlite concurrent access python"`
-
-**Optional context7:**
-- `"sqlite3"` library documentation
-
-### Example 3: Building API Client
-**Run all 3 WebSearch queries in parallel:**
-1. `"best practices python http client api 2025"`
-2. `"python async http client architecture"`
-3. `"github httpx aiohttp comparison examples"`
-
-**Optional context7:**
-- `"httpx"` library documentation
+Be specific. The more precise this field is, the more focused the distilled output will be.
 
 ## Query Optimization Tips
 
-1. **Always include year** - "2025" ensures current results
+1. **Always include year** - "2026" ensures current results
 2. **Use "best practices"** - surfaces established patterns
 3. **Include github** - gets real working code examples
 4. **Be specific** - "react authentication" not "authentication"
