@@ -1,10 +1,9 @@
 # Research Before Coding
 
-[![Claude Code Skill](https://img.shields.io/badge/Claude_Code-Skill-8A2BE2)](https://github.com/anombyte93/claude-research-skill)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/anombyte93/claude-research-skill/blob/main/LICENSE)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![GitHub stars](https://img.shields.io/github/stars/anombyte93/claude-research-skill)](https://github.com/anombyte93/claude-research-skill/stargazers)
-[![GitHub last commit](https://img.shields.io/github/last-commit/anombyte93/claude-research-skill)](https://github.com/anombyte93/claude-research-skill/commits)
-[![GitHub issues](https://img.shields.io/github/issues/anombyte93/claude-research-skill)](https://github.com/anombyte93/claude-research-skill/issues)
+[![Last Commit](https://img.shields.io/github/last-commit/anombyte93/claude-research-skill)](https://github.com/anombyte93/claude-research-skill/commits/main)
+[![GitHub Issues](https://img.shields.io/github/issues/anombyte93/claude-research-skill)](https://github.com/anombyte93/claude-research-skill/issues)
 
 A Claude Code skill that enforces mandatory research using WebSearch and optional context7 before writing any implementation code.
 
@@ -33,6 +32,14 @@ This skill treats research as a mandatory first step, not an optional one. No ex
    git clone <repo-url>
    ln -s $(pwd)/.claude/skills/research-before-coding ~/.claude/skills/research-before-coding
    ```
+
+
+
+## Quick Install
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/anombyte93/claude-research-skill/main/install.sh | bash
+```
 
 ## Usage
 
