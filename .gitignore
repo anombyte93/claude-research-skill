@@ -3,6 +3,9 @@
 .claude/tmp/
 .claude/.claude-id
 
+# Personal AI instructions - NEVER commit
+CLAUDE.md
+
 # OS
 .DS_Store
 Thumbs.db
