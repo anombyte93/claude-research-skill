@@ -7,6 +7,14 @@
 
 A Claude Code skill that enforces mandatory research using WebSearch and optional context7 before writing any implementation code.
 
+## Install
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/anombyte93/claude-research-skill/main/install.sh | bash
+```
+
+Installs to `~/.claude/skills/research-before-coding/`. Run the same command to upgrade.
+
 ## The Core Principle
 
 > **"You don't know anything until research confirms it"**
@@ -19,27 +27,6 @@ This skill treats research as a mandatory first step, not an optional one. No ex
 |----------|-----------|
 | **Research first**: 3 parallel calls × 3 seconds = 9 seconds → Correct code |
 | **Guess and fix**: Type code → Wrong → Debug → Wrong → Revert → Lost context = 15+ minutes |
-
-## Installation
-
-1. Copy this repository to your skills directory:
-   ```bash
-   cp -r .claude/skills/research-before-coding ~/.claude/skills/
-   ```
-
-2. Or clone and symlink:
-   ```bash
-   git clone <repo-url>
-   ln -s $(pwd)/.claude/skills/research-before-coding ~/.claude/skills/research-before-coding
-   ```
-
-
-
-## Quick Install
-
-```bash
-curl -fsSL https://raw.githubusercontent.com/anombyte93/claude-research-skill/main/install.sh | bash
-```
 
 ## Usage
 
@@ -66,6 +53,19 @@ Invoke the skill before writing any implementation code:
 
 **Step 3: Document findings**
 Write to `CLAUDE-research.md` in your project.
+
+## Manual Installation
+
+1. Copy this repository to your skills directory:
+   ```bash
+   cp -r .claude/skills/research-before-coding ~/.claude/skills/
+   ```
+
+2. Or clone and symlink:
+   ```bash
+   git clone <repo-url>
+   ln -s $(pwd)/.claude/skills/research-before-coding ~/.claude/skills/research-before-coding
+   ```
 
 ## Requirements
 
